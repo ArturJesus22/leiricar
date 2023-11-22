@@ -17,9 +17,6 @@ Objetivo desta aplicação será facilitar a procura de produtos para o cliente.
 
 
 
-[![Ipleiria](https://www.ipleiria.pt/)
-
-
 DIRECTORY STRUCTURE
 -------------------
 
