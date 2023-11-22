@@ -8,18 +8,17 @@
 </p>
 
 BackEnd
-Toda a gestão da empresa, desde stock, colaboradores, clientes, entre outras coisas.
+<p align="center"> Toda a gestão da empresa, desde stock, colaboradores, clientes, entre outras coisas. </p>
 
 FrontEnd
-O projeto LeiriCar consiste em uma aplicação móvel personalizada, que permitirá aos clientes explorar o catálogo de produtos de limpeza, 
+<p align="center">O projeto LeiriCar consiste em uma aplicação móvel personalizada, que permitirá aos clientes explorar o catálogo de produtos de limpeza, 
 agendar limpezas, ver uma breve descrição sobre os produtos, entre outra coisas, até achar o produto ideal para o que pretende. 
-Objetivo desta aplicação será facilitar a procura de produtos para o cliente.
+Objetivo desta aplicação será facilitar a procura de produtos para o cliente.</p>
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
+
+[![Ipleiria](https://www.ipleiria.pt/)
+
 
 DIRECTORY STRUCTURE
 -------------------
