@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://media.discordapp.net/attachments/971377371724775444/1176914438847205466/LeiriCar.png?ex=657099fc&is=655e24fc&hm=8158cb7077f41effcba49f9f28e2ad53bc83f2467dca641ae5f583a807278f67&=&format=webp&width=492&height=324" height="100px">
+        <img src="https://media.discordapp.net/attachments/971377371724775444/1176915440245690469/LeiriCar__cortado_branco.png?ex=65709aea&is=655e25ea&hm=f67ba807c79caca2d8364f3838ddcc795c77f8d194a6710c09129695cf94ea10&=&format=webp&width=340&height=83" height="100px">
     </a>
     <h1 align="center">LeiriCar</h1>
     <h2 align="center">Projeto de Plataformas de Sistemas de Informação</h2>
