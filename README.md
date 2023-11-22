@@ -2,7 +2,8 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
+    <h1 align="center">Projeto de Plataformas de Sistemas de Informação</h1>
+    <h2 align="center">Yii2 Framework</h2>
     <br>
 </p>
 
