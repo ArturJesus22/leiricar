@@ -145,15 +145,17 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+    /*
+        public function actionColaborador()
+        {
+            return $this->render('admin');
+        }
+        public function actionFuncionario()
+        {
+            return $this->render('funcionario');
+        }
+        */
 
-    public function actionColaborador()
-    {
-        return $this->render('admin');
-    }
-    public function actionFuncionario()
-    {
-        return $this->render('funcionario');
-    }
     public function actionProdutos()
     {
         return $this->render('produtos');
