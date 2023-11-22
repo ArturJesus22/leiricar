@@ -7,10 +7,10 @@
     <br>
 </p>
 
-BackEnd
+<p align="center">BackEnd</p>
 <p align="center"> Toda a gestão da empresa, desde stock, colaboradores, clientes, entre outras coisas. </p>
 
-FrontEnd
+<p align="center">FrontEnd</p>
 <p align="center">O projeto LeiriCar consiste em uma aplicação móvel personalizada, que permitirá aos clientes explorar o catálogo de produtos de limpeza, 
 agendar limpezas, ver uma breve descrição sobre os produtos, entre outra coisas, até achar o produto ideal para o que pretende. 
 Objetivo desta aplicação será facilitar a procura de produtos para o cliente.</p>
