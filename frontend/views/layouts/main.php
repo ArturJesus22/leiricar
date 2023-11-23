@@ -59,10 +59,11 @@ AppAsset::register($this);
         ['label' => 'Sobre Nós |', 'url' => ['/site/about']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Registar', 'url' => ['/clientes/create']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/clientes/create']];
+
     } else {
-        $menuItems[] = ['label' => 'Logout', 'url' => ['/site/logout']];
+        $menuItems[] = ['label' => 'Logout('.Yii::$app->user->identity->username.')', 'url' => ['/site/logout']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],

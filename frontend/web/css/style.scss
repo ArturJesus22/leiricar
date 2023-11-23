@@ -134,7 +134,6 @@ a:focus {
 
 .header_section {
   padding: 10px 0;
-
   .container-fluid {
     padding-right: 25px;
     padding-left: 25px;
@@ -160,7 +159,7 @@ a:focus {
     .nav-item {
       .nav-link {
         padding: 5px 20px;
-        color: $black;
+        color: black;
         text-align: center;
         text-transform: uppercase;
         border-radius: 5px;

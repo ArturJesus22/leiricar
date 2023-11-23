@@ -6,7 +6,11 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var backend\models\User $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var bool $disableRoleField */
+
+//$isDisabled = isset($disableRoleField) && $disableRoleField === true;
 ?>
+
 
 <div class="user-form">
 
@@ -18,12 +22,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+
     <?= $form->field($model, 'role')->dropDownList(
         [
             '' => 'Selecione um cargo', // Opção padrão
             'admin' => 'Admin',
             'funcionario' => 'Funcionário',
         ],
+        // ['disabled' => $isDisabled] // Desabilita o campo se $isDisabled for true
     ) ?>
 
     <div class="form-group">

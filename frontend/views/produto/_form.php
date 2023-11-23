@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Quantidade')->textInput() ?>
 
-    <?= $form->field($model, 'Imagem')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'Imagem')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

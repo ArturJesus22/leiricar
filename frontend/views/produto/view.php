@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-md-6">
-            <?= Html::img($model->getImageUrl(), ['class' => 'img-responsive', 'alt' => 'Product Image']) ?>
+<!--            --><?php //= Html::img($model->getImageUrl(), ['class' => 'img-responsive', 'alt' => 'Product Image']) ?>
         </div>
         <div class="col-md-6">
             <?= DetailView::widget([

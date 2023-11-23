@@ -57,6 +57,16 @@ class Clientes extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Username',
+            'password_hash' => 'Password',
+            'email' => 'Email',
+            'Morada' => 'Morada',
+            'nif' => 'NIF',
+        ];
+    }
     /**
      * {@inheritdoc}
      */

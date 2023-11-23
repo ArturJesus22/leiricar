@@ -13,6 +13,7 @@ $this->title = 'Atualizar dados do colaborador: ' . $model->username;
 
     <?= $this->render('_form', [
         'model' => $model,
+        //'disableRoleField' => true,
     ]) ?>
 
 </div>

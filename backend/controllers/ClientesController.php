@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Clientes;
+use common\models\ClientesSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -41,20 +42,14 @@ class ClientesController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Clientes::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
+
+        $searchModel = new ClientesSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

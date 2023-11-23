@@ -8,15 +8,17 @@ use yii\grid\GridView;
 
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var common\models\ClientesSearch $searchModel */
 
 $this->title = 'Clientes';
 ?>
 <div class="clientes-index">
 
 
-    <p>
-        <?= Html::a('Criar Cliente', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
+
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
 
 
     <?= GridView::widget([
@@ -29,7 +31,7 @@ $this->title = 'Clientes';
             //'password_hash',
             'email:email',
             'Morada',
-            //'nif',
+            'nif',
             //'created_at',
             //'updated_at',
             [
@@ -40,6 +42,10 @@ $this->title = 'Clientes';
             ],
         ],
     ]); ?>
+
+    <p>
+        <?= Html::a('Criar Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
 
 </div>
