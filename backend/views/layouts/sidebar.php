@@ -39,7 +39,7 @@
                     ['label' => 'Gerir Colaboradores', 'icon' => 'users', 'url' => ['/user/index']],
                     ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/clientes']],
                     ['label' => 'Produtos', 'header' => true],
-                    ['label' => 'Stock de Produtos', 'icon' => 'cube', 'url' => ['/produtos']],
+                    ['label' => 'Stock de Produtos', 'icon' => 'cube', 'url' => ['/produto']],
                     ['label' => 'Vendas de Produtos', 'icon' => 'shopping-cart', 'url' => ['/site/vendas']],
                     ['label' => 'Lavagens', 'icon' => 'broom', 'url' => ['/site/limpezas']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],

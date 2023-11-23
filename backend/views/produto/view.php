@@ -13,20 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="produto-view">
 
-    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/produtos'], ['class' => 'btn btn-dark']); ?>
-    <br></br>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'ID',
-            'Nome',
-            'Descricao:ntext',
-            'Preco',
-            'Quantidade',
-            'Imagem',
-        ],
-    ]) ?>
 
     <p>
         <?= Html::a('Atualizar', ['update', 'ID' => $model->ID], ['class' => 'btn btn-primary']) ?>
@@ -38,5 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'ID',
+            'Nome',
+            'Descricao:ntext',
+            'Preco',
+            'ID_categoria',
+            'Quantidade',
+        ],
+    ]) ?>
 
 </div>

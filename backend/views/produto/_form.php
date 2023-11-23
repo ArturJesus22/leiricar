@@ -10,7 +10,6 @@ use yii\widgets\ActiveForm;
 
 <div class="produto-form">
 
-
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
@@ -19,14 +18,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Preco')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'ID_categoria')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Categorias::find()->all(),
+        'ID_categoria', 'nome_categoria'),
+        ['prompt'=>'Selecione a Categoria']) ?>
+
     <?= $form->field($model, 'Quantidade')->textInput() ?>
 
-    <?= $form->field($model, 'Imagem')->textInput(['maxlength' => true]) ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
-
-        <?= Html::a('Cancelar', ['/produtos'], ['class' => 'btn btn-danger']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
