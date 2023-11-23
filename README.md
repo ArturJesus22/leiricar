@@ -1,25 +1,21 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    <a href="https://github.com/ArturJesus22/leiricar/tree/master" target="_blank">
+        <img src="https://media.discordapp.net/attachments/971377371724775444/1176915440245690469/LeiriCar__cortado_branco.png?ex=65709aea&is=655e25ea&hm=f67ba807c79caca2d8364f3838ddcc795c77f8d194a6710c09129695cf94ea10&=&format=webp&width=340&height=83" height="100px">
     </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
+    <h2 align="center">Projeto de Plataformas de Sistemas de Informação</h2>
+    <h3 align="center">Yii2 Framework</h3>
     <br>
 </p>
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+<p align="center">BackEnd</p>
+<p align="center"> Toda a gestão da empresa, desde stock, colaboradores, clientes, entre outras coisas. </p>
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+<p align="center">FrontEnd</p>
+<p align="center">O projeto LeiriCar consiste em uma aplicação móvel personalizada, que permitirá aos clientes explorar o catálogo de produtos de limpeza, 
+agendar limpezas, ver uma breve descrição sobre os produtos, entre outra coisas, até achar o produto ideal para o que pretende. 
+Objetivo desta aplicação será facilitar a procura de produtos para o cliente.</p>
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
 
 DIRECTORY STRUCTURE
 -------------------
