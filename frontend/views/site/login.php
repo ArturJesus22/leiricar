@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
-/** @var \common\models\ClientesForm $model */
+/** @var \common\models\LoginForm $model */
 
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
@@ -10,20 +10,23 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-login" style="text-align: center;">
 
-    <p>Preencha com as suas credenciais:</p>
 
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <div class="col-lg-5" style="max-width: 500px;margin: auto;border: 2px solid black;margin-bottom: 50px;background-color:#111;border-radius: 25px;">            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <br>
+            <h2 style="color: white;"><?= Html::encode($this->title) ?></h2>
+            <p style="color: white;">Preencha conforme as suas credenciais:</p>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <div style="color: white;text-align:left">
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+            </div>
 
 
             <div class="form-group">

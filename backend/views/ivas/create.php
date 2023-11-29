@@ -3,14 +3,13 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Categorias $model */
+/** @var common\models\Ivas $model */
 
-$this->title = 'Criar Categoria';
-$this->params['breadcrumbs'][] = ['label' => 'Categorias', 'url' => ['index']];
+$this->title = 'Criar Iva';
+$this->params['breadcrumbs'][] = ['label' => 'Ivas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="categorias-create">
-
+<div class="ivas-create">
 
     <?= $this->render('_form', [
         'model' => $model,

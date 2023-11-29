@@ -37,11 +37,14 @@
                 'items' => [
                     ['label' => 'Utilizadores', 'header' => true],
                     ['label' => 'Gerir Colaboradores', 'icon' => 'users', 'url' => ['/user/index']],
-                    ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/clientes']],
+                    ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/user/index']],
                     ['label' => 'Produtos', 'header' => true],
-                    ['label' => 'Stock de Produtos', 'icon' => 'cube', 'url' => ['/produto']],
+                    ['label' => 'Stock de Produtos', 'icon' => 'cube', 'url' => ['/produtos']],
                     ['label' => 'Vendas de Produtos', 'icon' => 'shopping-cart', 'url' => ['/site/vendas']],
                     ['label' => 'Lavagens', 'icon' => 'broom', 'url' => ['/site/limpezas']],
+                    ['label' => 'Extras', 'header' => true],
+                    ['label' => 'Gerir Ivas', 'icon' => 'fas fa-percent', 'url' => ['/ivas']],
+                    ['label' => 'Gerir Categorias', 'icon' => 'fas fa-folder', 'url' => ['/categorias']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
 

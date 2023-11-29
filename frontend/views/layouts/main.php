@@ -35,6 +35,7 @@ AppAsset::register($this);
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -60,11 +61,29 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/clientes/create']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
 
     } else {
-        $menuItems[] = ['label' => 'Logout('.Yii::$app->user->identity->username.')', 'url' => ['/site/logout']];
+        // Adiciona o botão de perfil
+        $menuItems[] = '<a id="perfil" style="margin-right: 10px; text-decoration: none; padding: 5px;" href="url_para_perfil">
+             <i class="fas fa-user" style="color: black; font-size: 1.5rem;"></i>
+            </a>';
+
+        // Adiciona o botão do carrinho de compras
+        $menuItems[] = '<a id="carrinho-compras" style="margin-right: 1px; text-decoration: none; padding: 5px;" href="url_para_carrinho">
+            <i class="fas fa-shopping-cart" style="color: black; font-size: 1.5rem;"></i>
+            </a>';
+
+        $menuItems[] = [
+            'label' => '<button type="button" class="btn btn-outline-dark" style="color: red; border: 1px solid black">LOGOUT</button>',
+            'url' => ['/site/logout'],
+            'encode' => false, // Para garantir que a marcação HTML seja interpretada corretamente
+        ];
+
+        //$menuItems[] = ['label' => 'Logout('.Yii::$app->user->identity->username.')', 'url' => ['/site/logout']];
+
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,

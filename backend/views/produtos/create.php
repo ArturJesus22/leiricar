@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Categorias $model */
+/** @var common\models\Produtos $model */
 
-$this->title = 'Criar Categoria';
-$this->params['breadcrumbs'][] = ['label' => 'Categorias', 'url' => ['index']];
+$this->title = 'Criar Produtos';
+$this->params['breadcrumbs'][] = ['label' => 'Produtos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="categorias-create">
+<div class="produtos-create">
 
 
     <?= $this->render('_form', [

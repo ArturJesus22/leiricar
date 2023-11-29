@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categorias-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Criar Categoria', ['create'], ['class' => 'btn btn-success']) ?>
@@ -24,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'ID_categoria',
             'nome_categoria',

@@ -4,28 +4,23 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Clientes $model */
+/** @var backend\models\User $model */
 
 $this->title = $model->username;
 
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="clientes-view">
+<div class="user-view">
 
-    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/clientes'], ['class' => 'btn btn-dark']); ?>
+
+    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/user'], ['class' => 'btn btn-dark']); ?>
+
     <br></br>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-          //  'id',
             'username',
-            //'password_hash',
             'email:email',
-            'Morada',
-            'nif',
-            //'created_at',
-            //'updated_at',
         ],
     ]) ?>
 

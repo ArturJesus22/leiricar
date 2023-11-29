@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Clientes $model */
+/** @var backend\models\User $model */
 
-$this->title = 'Atualizar Cliente: ' . $model->username;
+$this->title = 'Criar Colaborador';
+
 ?>
-<div class="clientes-update">
-
+<div class="user-create">
 
     <?= $this->render('_form', [
         'model' => $model,

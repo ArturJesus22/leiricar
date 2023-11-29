@@ -1,46 +1,77 @@
 <?php
 
-/** @var yii\web\View $this */
+use common\models\Dados_Clientes;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 
-$this->title = 'LeiriCar - BackOffice' ;
+$this->title = 'LeiriCar - BackOffice';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">LeiriCar BackOffice</h1>
-        <p class="lead">Bem-Vindo, <?= Yii::$app->user->identity->username ?> </p>
-        <p class="lead">“Individualmente, somos apenas uma gota. Juntos, somos um oceano.”</p>
-<!--        <a href="/admin" class="btn btn-primary btn-lg">Área de Gestão</a>-->
+<?php if (Yii::$app->session->getFlash('error') !== null) { ?>
+    <div class="col-lg-6">
+        <?= \hail812\adminlte\widgets\Alert::widget([
+            'type' => 'danger',
+            'body' => Yii::$app->session->getFlash('error'),
+        ]) ?>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Leiria Sobre Rodas 2023</h2>
-                        <p class="card-text">A participação da LeiriaCar no evento "Leiria sobre Rodas" é motivo de grande orgulho para a empresa. Ao longo dos anos, a LeiriaCar tem demonstrado um compromisso inabalável em promover a paixão pelos automóveis e a cultura automobilística na região de Leiria.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">JorCar</h2>
-                        <p class="card-text">Estamos extremamente orgulhosos da parceria com a JorCar. Essa colaboração fortalece nossa capacidade de oferecer soluções de alta qualidade e inovação aos nossos clientes.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Drift Land</h2>
-                        <p class="card-text">A participação da LeiriaCar no Drift Land enche-nos de orgulho. É uma oportunidade de mostrar nossa paixão por automóveis e performance, compartilhando emoções com entusiastas de todo o país. Estamos ansiosos para acelerar juntos no mundo do Drift.</p>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
+<?php } ?>
+<?php if (Yii::$app->session->getFlash('success') !== null) { ?>
+    <div class="col-lg-6">
+        <?= \hail812\adminlte\widgets\Alert::widget([
+            'type' => 'success',
+            'body' => "Bem vindo(a),". Yii::$app->user->identity->username. "!",
+        ]) ?>
+    </div>
+<?php } ?>
 
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Teste1',
+            'text' => 'Clientes Registados',
+            'icon' => 'fas fa-user-plus',
+            'linkText' => 'Ver Clientes',
+            'linkUrl' => Url::toRoute(["/users"]),
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Ainda por fazer',
+            'text' => 'Funcionários Registados',
+            'icon' => 'fas fa-user-plus',
+            'linkText' => 'Ver Funcionários',
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Ainda por fazer',
+            'text' => 'Stocks',
+            'icon' => 'fas fa-home',
+            'linkText' => 'Consultar Stocks',
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Ainda por fazer',
+            'text' => 'Categorias',
+            'icon' => 'fas fa-industry',
+            'linkText' => 'Ver Categorias',
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Ainda por fazer',
+            'text' => 'Número de Marcas',
+            'icon' => 'fas fa-industry',
+            'linkText' => 'Ver Marcas',
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Ainda por fazer',
+            'text' => 'Produtos Registados',
+            'icon' => 'fas fa-tag',
+            'linkText' => 'Ver Produtos',
+        ]) ?>
+    </div>
+
     </div>

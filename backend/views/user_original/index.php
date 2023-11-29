@@ -1,6 +1,6 @@
 <?php
 
-use common\models\Clientes;
+use backend\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -8,17 +8,16 @@ use yii\grid\GridView;
 
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
-/** @var common\models\ClientesSearch $searchModel */
 
-$this->title = 'Clientes';
+$this->title = 'Colaboradores';
+
 ?>
-<div class="clientes-index">
+<div class="user-index">
 
 
-
-
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <p>
+        <?= Html::a('Criar Colaborador', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
 
     <?= GridView::widget([
@@ -28,24 +27,22 @@ $this->title = 'Clientes';
 
             //'id',
             'username',
-            //'password_hash',
-            'email:email',
-            'Morada',
-            'nif',
+            'email',
+            //'authAssignments.item_name', por fazer objetivo é aparecer a role em cada utilizador
+
+            //'email:email',
+            //'status',
             //'created_at',
             //'updated_at',
+            //'verification_token',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Clientes $model, $key, $index, $column) {
+                'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
         ],
     ]); ?>
-
-    <p>
-        <?= Html::a('Criar Cliente', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 
 </div>

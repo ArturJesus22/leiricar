@@ -2,18 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Clientes;
-use common\models\ClientesSearch;
-use yii\data\ActiveDataProvider;
+use common\models\Produtos;
+use backend\models\ProdutosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Yii;
 
 /**
- * ClientesController implements the CRUD actions for Clientes model.
+ * ProdutosController implements the CRUD actions for Produtos model.
  */
-class ClientesController extends Controller
+class ProdutosController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,54 +32,51 @@ class ClientesController extends Controller
     }
 
     /**
-     * Lists all Clientes models.
+     * Lists all Produtos models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Clientes::find(),
-        ]);
-
-        $searchModel = new ClientesSearch();
+        $searchModel = new ProdutosSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Clientes model.
-     * @param int $id ID
+     * Displays a single Produtos model.
+     * @param int $ID ID
+     * @param int $ID_categoria Id Categoria
+     * @param int $id_iva Id Iva
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($ID, $ID_categoria, $id_iva)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($ID, $ID_categoria, $id_iva),
         ]);
     }
 
     /**
-     * Creates a new Clientes model.
+     * Creates a new Produtos model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|yii\web\Response
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Clientes();
+        $model = new Produtos();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $auth = Yii::$app->authManager;
-            $role = $auth->getRole('cliente');
-            $auth->assign($role, $model->id);
-
-
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'ID' => $model->ID, 'ID_categoria' => $model->ID_categoria, 'id_iva' => $model->id_iva]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -90,18 +85,20 @@ class ClientesController extends Controller
     }
 
     /**
-     * Updates an existing Clientes model.
+     * Updates an existing Produtos model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param int $ID ID
+     * @param int $ID_categoria Id Categoria
+     * @param int $id_iva Id Iva
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($ID, $ID_categoria, $id_iva)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($ID, $ID_categoria, $id_iva);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'ID' => $model->ID, 'ID_categoria' => $model->ID_categoria, 'id_iva' => $model->id_iva]);
         }
 
         return $this->render('update', [
@@ -110,29 +107,33 @@ class ClientesController extends Controller
     }
 
     /**
-     * Deletes an existing Clientes model.
+     * Deletes an existing Produtos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
+     * @param int $ID ID
+     * @param int $ID_categoria Id Categoria
+     * @param int $id_iva Id Iva
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($ID, $ID_categoria, $id_iva)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($ID, $ID_categoria, $id_iva)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Clientes model based on its primary key value.
+     * Finds the Produtos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Clientes the loaded model
+     * @param int $ID ID
+     * @param int $ID_categoria Id Categoria
+     * @param int $id_iva Id Iva
+     * @return Produtos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($ID, $ID_categoria, $id_iva)
     {
-        if (($model = Clientes::findOne(['id' => $id])) !== null) {
+        if (($model = Produtos::findOne(['ID' => $ID, 'ID_categoria' => $ID_categoria, 'id_iva' => $id_iva])) !== null) {
             return $model;
         }
 

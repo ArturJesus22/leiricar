@@ -1,8 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
-use common\models\ClientesForm;
+use common\models\LoginForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -90,13 +89,41 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new ClientesForm();
-
+        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->can('cliente')) {
+                return $this->goHome();
+            }
+            else{
+                Yii::$app->user->logout();
+                Yii::$app->session->setFlash('error', 'Por favor, crie um conta cliente para que consiga aceder!');
+                return $this->refresh();
+            }
+        }
+        $model->password = '';
+
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+
+
+    }
+
+    public function actionSignup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
         }
 
-        return $this->render('login', ['model' => $model]);
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->goHome();
+        }
+
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -237,18 +264,18 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTeste()
-    {
-        //  'admin'
-        if (Yii::$app->user->can('admin')) {
-            // Renderiza a visão 'admin' se o usuário for um administrador
-            return $this->render('admin');
-        } elseif (Yii::$app->user->can('funcionario')) {
-            return $this->render('funcionario');
-        } elseif (Yii::$app->user->can('cliente')) {
-            return $this->render('cliente');
-        } else {
-            throw new \yii\web\NotFoundHttpException('Dá LOGIN para que possas aceder!');
-        }
-    }
+//    public function actionTeste()
+//    {
+//        //  'admin'
+//        if (Yii::$app->user->can('admin')) {
+//            // Renderiza a visão 'admin' se o usuário for um administrador
+//            return $this->render('admin');
+//        } elseif (Yii::$app->user->can('funcionario')) {
+//            return $this->render('funcionario');
+//        } elseif (Yii::$app->user->can('cliente')) {
+//            return $this->render('cliente');
+//        } else {
+//            throw new \yii\web\NotFoundHttpException('Dá LOGIN para que possas aceder!');
+//        }
+//    }
 }

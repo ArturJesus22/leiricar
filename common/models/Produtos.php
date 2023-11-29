@@ -13,16 +13,18 @@ use Yii;
  * @property float $Preco
  * @property int $ID_categoria
  * @property int|null $Quantidade
+ * @property int $id_iva
  *
  * @property Avaliacoes[] $avaliacoes
  * @property Carrinho[] $carrinhos
  * @property Categorias $categoria
- * @property Clientes[] $clientes
+ * @property User[] $clientes
  * @property Favoritos[] $favoritos
  * @property Imagens[] $imagens
+ * @property Ivas $iva
  * @property LinhaFaturas[] $linhaFaturas
  */
-class Produto extends \yii\db\ActiveRecord
+class Produtos extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -38,12 +40,14 @@ class Produto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nome', 'Preco', 'ID_categoria'], 'required'],
+            [['Nome', 'Preco', 'ID_categoria', 'id_iva'], 'required'],
             [['Descricao'], 'string'],
             [['Preco'], 'number'],
-            [['ID_categoria', 'Quantidade'], 'integer'],
+            [['ID_categoria', 'Quantidade', 'id_iva'], 'integer'],
             [['Nome'], 'string', 'max' => 255],
+            [['Nome'], 'unique'],
             [['ID_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::class, 'targetAttribute' => ['ID_categoria' => 'ID_categoria']],
+            [['id_iva'], 'exist', 'skipOnError' => true, 'targetClass' => Ivas::class, 'targetAttribute' => ['id_iva' => 'id']],
         ];
     }
 
@@ -59,6 +63,7 @@ class Produto extends \yii\db\ActiveRecord
             'Preco' => 'Preco',
             'ID_categoria' => 'Id Categoria',
             'Quantidade' => 'Quantidade',
+            'id_iva' => 'Id Iva',
         ];
     }
 
@@ -99,7 +104,7 @@ class Produto extends \yii\db\ActiveRecord
      */
     public function getClientes()
     {
-        return $this->hasMany(Clientes::class, ['id' => 'ID_cliente'])->viaTable('favoritos', ['ID_produto' => 'ID']);
+        return $this->hasMany(User::class, ['id' => 'ID_cliente'])->viaTable('favoritos', ['ID_produto' => 'ID']);
     }
 
     /**
@@ -120,6 +125,16 @@ class Produto extends \yii\db\ActiveRecord
     public function getImagens()
     {
         return $this->hasMany(Imagens::class, ['ID_produto' => 'ID']);
+    }
+
+    /**
+     * Gets query for [[Iva]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIva()
+    {
+        return $this->hasOne(Ivas::class, ['id' => 'id_iva']);
     }
 
     /**
