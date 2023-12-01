@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\Produto;
+use common\models\Produtos;
 use common\models\ProdutoSearch;
 use Yii;
 use yii\web\Controller;

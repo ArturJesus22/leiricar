@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 
-/* @var $model common\models\Produto */
+/* @var $model common\models\Produtos; */
 
 ?>
 <div class="card" style="width: 18rem;">

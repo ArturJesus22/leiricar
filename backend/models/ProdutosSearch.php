@@ -14,11 +14,13 @@ class ProdutosSearch extends Produtos
     /**
      * {@inheritdoc}
      */
+
+    public $nomeCategoria;
     public function rules()
     {
         return [
             [['ID', 'ID_categoria', 'Quantidade', 'id_iva'], 'integer'],
-            [['Nome', 'Descricao'], 'safe'],
+            [['Nome', 'Descricao', ], 'safe'],
             [['Preco'], 'number'],
         ];
     }
@@ -42,6 +44,7 @@ class ProdutosSearch extends Produtos
     public function search($params)
     {
         $query = Produtos::find();
+        $query->joinWith(['categoria']);
 
         // add conditions that should always apply here
 
@@ -67,7 +70,8 @@ class ProdutosSearch extends Produtos
         ]);
 
         $query->andFilterWhere(['like', 'Nome', $this->Nome])
-            ->andFilterWhere(['like', 'Descricao', $this->Descricao]);
+            ->andFilterWhere(['like', 'Descricao', $this->Descricao])
+            ->andFilterWhere(['like', 'categorias.nome_categoria', $this->nomeCategoria]);
 
         return $dataProvider;
     }

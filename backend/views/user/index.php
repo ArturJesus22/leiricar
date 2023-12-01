@@ -36,6 +36,16 @@ $this->title = 'Colaboradores';
             //'updated_at',
             //'verification_token',
             [
+                'label' => 'Role',
+                'value' => function ($model) {
+                    // Obtém a role na tabela AuthAssignment
+                    $assignment = \backend\models\AuthAssignment::find()
+                        ->where(['user_id' => $model->id])
+                        ->one();
+                    return isset($assignment) ? $assignment->item_name : 'Sem Role';
+                },
+            ],
+            [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);

@@ -54,8 +54,13 @@ class UserController extends Controller
     {
         $authAssignments = AuthAssignment::find()->all();
 
+        $userIdsWithRoles = AuthAssignment::find()
+            ->select('user_id')
+            ->where(['in', 'item_name', ['admin', 'funcionario']])
+            ->column();
+
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
+            'query' => User::find()->where(['id' => $userIdsWithRoles])
             /*
             'pagination' => [
                 'pageSize' => 50

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Categorias;
 use common\models\Produtos;
 use backend\models\ProdutosSearch;
 use yii\web\Controller;
@@ -40,6 +41,8 @@ class ProdutosController extends Controller
     {
         $searchModel = new ProdutosSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        //$modelCat = Categorias::findOne(['ID_Categoria' => $ID_Categoria]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -138,5 +141,9 @@ class ProdutosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    public function getCategoria()
+    {
+        return $this->hasOne(Categorias::class, ['ID_categoria' => 'ID_categoria']);
     }
 }

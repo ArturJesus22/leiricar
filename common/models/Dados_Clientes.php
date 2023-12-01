@@ -23,6 +23,8 @@ class Dados_Clientes extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+
     public static function tableName()
     {
         return 'clientes';

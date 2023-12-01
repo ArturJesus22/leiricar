@@ -12,7 +12,16 @@ use yii\widgets\ActiveForm;
 ?>
 
 
-<div class="user-form">
+<div class="site-signup" style="text-align: center;">
+    <br>
+    <div class=" row">
+        <div class="col-lg-5" style="max-width: 500px;margin: auto;border: 2px solid black;margin-bottom: 50px;background-color:#333;border-radius: 25px;">
+            <br>
+            <h2 style="color: white;"><?= Html::encode($this->title) ?></h2>
+
+            <br>
+
+            <div style="color: white;text-align:left">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -31,14 +40,15 @@ use yii\widgets\ActiveForm;
         ],
         // ['disabled' => $isDisabled] // Desabilita o campo se $isDisabled for true
     ) ?>
-
+            </div>
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Criar Colaborador', ['class' => 'btn btn-success']) ?>
 
         <?= Html::a('Cancelar', ['/user'], ['class' => 'btn btn-danger']) ?>
     </div>
 
-
+            <br>
     <?php ActiveForm::end(); ?>
-
+        </div>
+    </div>
 </div>

@@ -37,7 +37,7 @@
                 'items' => [
                     ['label' => 'Utilizadores', 'header' => true],
                     ['label' => 'Gerir Colaboradores', 'icon' => 'users', 'url' => ['/user/index']],
-                    ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/user/index']],
+                    ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/clientes/index']],
                     ['label' => 'Produtos', 'header' => true],
                     ['label' => 'Stock de Produtos', 'icon' => 'cube', 'url' => ['/produtos']],
                     ['label' => 'Vendas de Produtos', 'icon' => 'shopping-cart', 'url' => ['/site/vendas']],
