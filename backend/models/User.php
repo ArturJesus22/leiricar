@@ -38,12 +38,12 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email', 'password'], 'required'], // Inclua 'password' nas regras de validação
+            [['username', 'email', 'password'], 'required'],
             [['auth_key', 'status', 'created_at', 'updated_at', 'password_reset_token', 'verification_token'], 'safe'],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
-            [['role'], 'required', 'message' => 'Por favor, selecione um cargo.'],
+            [['role'], 'required', 'on' => 'create', 'message' => 'Por favor, selecione um cargo.'],
             [['role'], 'in', 'range' => ['admin', 'funcionario']],
         ];
     }
@@ -64,7 +64,6 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
-            // Adicione 'password' às labels se desejar
             'password' => 'Password',
         ];
     }
