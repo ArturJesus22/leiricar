@@ -3,34 +3,27 @@
 use common\models\Dados_Clientes;
 use yii\helpers\Url;
 use yii\web\JsExpression;
+use common\models\User;
 
 $this->title = 'LeiriCar - BackOffice';
 ?>
-<?php if (Yii::$app->session->getFlash('error') !== null) { ?>
-    <div class="col-lg-6">
-        <?= \hail812\adminlte\widgets\Alert::widget([
-            'type' => 'danger',
-            'body' => Yii::$app->session->getFlash('error'),
-        ]) ?>
-    </div>
-<?php } ?>
-<?php if (Yii::$app->session->getFlash('success') !== null) { ?>
+
+
     <div class="col-lg-6">
         <?= \hail812\adminlte\widgets\Alert::widget([
             'type' => 'success',
-            'body' => "Bem vindo(a),". Yii::$app->user->identity->username. "!",
+            'body' => "Bem vindo(a), ". Yii::$app->user->identity->username. "!",
         ]) ?>
     </div>
-<?php } ?>
 
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <?= \hail812\adminlte\widgets\SmallBox::widget([
-            'title' => 'Teste1',
+            'title' => $numUsersWithClienteRole,
             'text' => 'Clientes Registados',
             'icon' => 'fas fa-user-plus',
             'linkText' => 'Ver Clientes',
-            'linkUrl' => Url::toRoute(["/users"]),
+            'linkUrl' => Url::toRoute(["/clientes"]),
         ]) ?>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\AuthAssignment;
 use common\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
@@ -99,7 +100,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $userIdsWithClienteRole = AuthAssignment::find()
+            ->select('user_id')
+            ->where(['item_name' => 'cliente'])
+            ->column();
+        $numUsersWithClienteRole = count($userIdsWithClienteRole);
+
+        $userIdsWithFuncionarioRole = AuthAssignment::find()
+            ->select('user_id')
+            ->where(['item_name' => 'funcionario'])
+            ->column();
+        $numUsersWithFuncionarioRole = count($userIdsWithFuncionarioRole);
+
+        return $this->render('index', [
+            //PASSAR PARA O INDEX ESTAS VARIAVEIS
+            'numUsersWithClienteRole' => $numUsersWithClienteRole,
+            'numUsersWithFuncionarioRole' => $numUsersWithFuncionarioRole,
+        ]);
     }
 
     /**

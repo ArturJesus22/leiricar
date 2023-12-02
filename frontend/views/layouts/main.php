@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\helpers\url;
 
 AppAsset::register($this);
 ?>
@@ -65,9 +66,9 @@ AppAsset::register($this);
 
     } else {
         // Adiciona o botão de perfil
-        $menuItems[] = '<a id="perfil" style="margin-right: 10px; text-decoration: none; padding: 5px;" href="url_para_perfil">
-             <i class="fas fa-user" style="color: black; font-size: 1.5rem;"></i>
-            </a>';
+        $menuItems[] = '<a id="perfil" style="border: 2px solid black; margin-right: 10px; text-decoration: none; padding: 5px;" class="btn btn-outline-dark" href="' . Url::toRoute("dados/view") . '">
+        <i class="fas fa-user" style="color: black; font-size: 1.5rem;"></i>
+        </a>';
 
         // Adiciona o botão do carrinho de compras
         $menuItems[] = '<a id="carrinho-compras" style="margin-right: 1px; text-decoration: none; padding: 5px;" href="url_para_carrinho">
