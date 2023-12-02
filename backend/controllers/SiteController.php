@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use backend\models\AuthAssignment;
+use common\models\Categorias;
 use common\models\LoginForm;
+use common\models\Produtos;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -112,10 +114,18 @@ class SiteController extends Controller
             ->column();
         $numUsersWithFuncionarioRole = count($userIdsWithFuncionarioRole);
 
+        $categorias = Categorias::find();
+        $numCategorias = $categorias -> count();
+
+        $produtos = Produtos::find();
+        $numProdutos= $produtos-> count();
+
         return $this->render('index', [
             //PASSAR PARA O INDEX ESTAS VARIAVEIS
             'numUsersWithClienteRole' => $numUsersWithClienteRole,
             'numUsersWithFuncionarioRole' => $numUsersWithFuncionarioRole,
+            'numCategorias' => $numCategorias,
+            'numProdutos' => $numProdutos,
         ]);
     }
 

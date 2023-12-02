@@ -19,6 +19,15 @@ $this->title = 'LeiriCar - BackOffice';
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => $numUsersWithFuncionarioRole,
+            'text' => 'Funcionários Registados',
+            'icon' => 'fas fa-user-plus',
+            'linkText' => 'Ver Funcionários',
+            'linkUrl' => Url::toRoute(["/user"]),
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
             'title' => $numUsersWithClienteRole,
             'text' => 'Clientes Registados',
             'icon' => 'fas fa-user-plus',
@@ -28,10 +37,19 @@ $this->title = 'LeiriCar - BackOffice';
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <?= \hail812\adminlte\widgets\SmallBox::widget([
-            'title' => 'Ainda por fazer',
-            'text' => 'Funcionários Registados',
-            'icon' => 'fas fa-user-plus',
-            'linkText' => 'Ver Funcionários',
+            'title' => $numProdutos,
+            'text' => 'Produtos Registados',
+            'icon' => 'fas fa-tag',
+            'linkText' => 'Ver Produtos',
+            'linkUrl' => Url::toRoute(["/produtos"]),
+        ]) ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => $numCategorias,
+            'text' => 'Categorias',
+            'icon' => 'fas fa-industry',
+            'linkText' => 'Ver Categorias',
         ]) ?>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -45,26 +63,11 @@ $this->title = 'LeiriCar - BackOffice';
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <?= \hail812\adminlte\widgets\SmallBox::widget([
             'title' => 'Ainda por fazer',
-            'text' => 'Categorias',
-            'icon' => 'fas fa-industry',
-            'linkText' => 'Ver Categorias',
-        ]) ?>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-        <?= \hail812\adminlte\widgets\SmallBox::widget([
-            'title' => 'Ainda por fazer',
             'text' => 'Número de Marcas',
             'icon' => 'fas fa-industry',
             'linkText' => 'Ver Marcas',
         ]) ?>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-        <?= \hail812\adminlte\widgets\SmallBox::widget([
-            'title' => 'Ainda por fazer',
-            'text' => 'Produtos Registados',
-            'icon' => 'fas fa-tag',
-            'linkText' => 'Ver Produtos',
-        ]) ?>
-    </div>
+
 
     </div>

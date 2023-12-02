@@ -18,6 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <br>
             <h2 style="color: white;"><?= Html::encode($this->title) ?></h2>
+
+            <?php
+            //Mensagem de flash de erro
+            if (Yii::$app->session->hasFlash('error')) {
+                echo '<div class="alert alert-danger">' . Yii::$app->session->getFlash('error') . '</div>';
+            }
+            ?>
+
             <p style="color: white;">Preencha conforme as suas credenciais:</p>
 
             <div style="color: white; text-align: left;">

@@ -8,6 +8,7 @@ use backend\models\ClientesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii;
 
 /**
  * ClientesController implements the CRUD actions for Dados_Clientes model.
@@ -124,9 +125,8 @@ class ClientesController extends Controller
      */
     public function actionDelete($id, $user_id)
     {
-        $this->findModel($id, $user_id)->delete();
-
-        return $this->redirect(['index']);
+            Yii::$app->session->setFlash('error', 'Você não pode realizar esta ação. Todos os usuários devem ser removidos na secção "Gerir Colaboradores".');
+            return $this->redirect(['index']);
     }
 
     /**

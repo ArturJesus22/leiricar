@@ -18,6 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?php
+    //Mensagem de flash de erro
+    if (Yii::$app->session->hasFlash('error')) {
+        echo '<div class="alert alert-danger">' . Yii::$app->session->getFlash('error') . '</div>';
+    }
+    ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,

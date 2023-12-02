@@ -1,3 +1,5 @@
+<?php use yii\helpers\Html; ?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="http://leiricar-backend.test/index.php" class="brand-link">
@@ -13,8 +15,7 @@
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?= Yii::$app->user->identity->username ?></a>
-            </div>
+                <?= Html::a(Yii::$app->user->identity->username, ['/site'], ['class' => 'd-block']) ?>    </div>
         </div>
 
         <!-- SidebarSearch Form -->
