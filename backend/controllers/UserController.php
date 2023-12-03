@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\AuthAssignment;
+use Yii;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -127,12 +128,30 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
+        $authAssignments = AuthAssignment::find()
+            ->where(['user_id' => $id])
+            ->all();
+
+        $userRoles = [];
+        foreach ($authAssignments as $assignment) {
+            $userRoles[] = $assignment->item_name;
+        }
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            if ($model->isAttributeChanged('role')) {
+                    foreach ($authAssignments as $assignment) {
+                        Yii::$app->authManager->revoke($assignment->item_name, $model->id);
+                    }
+                    $auth = Yii::$app->authManager;
+                    $role = $auth->getRole($model->role);
+                    $auth->assign($role, $model->id);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'userRoles' => $userRoles,
         ]);
     }
 

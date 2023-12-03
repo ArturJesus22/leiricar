@@ -43,8 +43,8 @@ class User extends \yii\db\ActiveRecord
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
-            [['role'], 'required', 'on' => 'create', 'message' => 'Por favor, selecione um cargo.'],
-            [['role'], 'in', 'range' => ['admin', 'funcionario']],
+            [['role'], 'required', 'message' => 'Por favor, selecione um cargo.'],
+            [['role'], 'in', 'range' => ['admin', 'funcionario', 'cliente']],
         ];
     }
 
