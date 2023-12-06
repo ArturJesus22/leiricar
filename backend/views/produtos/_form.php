@@ -7,6 +7,7 @@ use common\models\Ivas;
 
 /** @var yii\web\View $this */
 /** @var common\models\Produtos $model */
+/** @var common\models\Imagens $modelImagem */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -34,7 +35,7 @@ use common\models\Ivas;
         ['prompt' => 'Selecione o IVA']
     )?>
 
-<!--    --><?php //= $form->field($model, 'imagem[]')->fileInput()?>
+<!--    --><?php /*= $form->field($modelImagem, 'fileName[]')->fileInput(['multiple' => true]) */?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

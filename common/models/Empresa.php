@@ -35,7 +35,7 @@ class Empresa extends \yii\db\ActiveRecord
         return [
             [['designacaoSocial', 'email', 'telefone', 'nif', 'morada', 'codigoPostal', 'localidade', 'capitalSocial'], 'required'],
             [['capitalSocial'], 'integer'],
-            [['designacaoSocial', 'email', 'morada', 'localidade'], 'string', 'max' => 45],
+            [['designacaoSocial', 'email', 'morada', 'localidade'], 'string', 'max' => 100],
             [['telefone', 'nif', 'codigoPostal'], 'string', 'max' => 9],
         ];
     }

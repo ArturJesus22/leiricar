@@ -37,7 +37,7 @@
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'Empresa', 'header' => true],
-                    ['label' => 'Empresa', 'icon' => 'building', 'url' => ['/empresa']],
+                    ['label' => 'Empresa', 'icon' => 'building', 'url' => ['/empresa/index']],
                     ['label' => 'Utilizadores', 'header' => true],
                     ['label' => 'Gerir Colaboradores', 'icon' => 'users', 'url' => ['/user/index']],
                     ['label' => 'Gerir Clientes', 'icon' => 'user', 'url' => ['/clientes/index']],
@@ -47,8 +47,8 @@
                     ['label' => 'Lavagens', 'icon' => 'broom', 'url' => ['/site/limpezas']],
                     ['label' => 'Avaliações', 'icon' => 'star', 'url' => ['/avaliacao/index']],
                     ['label' => 'Extras', 'header' => true],
-                    ['label' => 'Gerir Ivas', 'icon' => 'fas fa-percent', 'url' => ['/ivas']],
-                    ['label' => 'Gerir Categorias', 'icon' => 'fas fa-folder', 'url' => ['/categorias']],
+                    ['label' => 'Gerir Ivas', 'icon' => 'fas fa-percent', 'url' => ['/ivas/index']],
+                    ['label' => 'Gerir Categorias', 'icon' => 'fas fa-folder', 'url' => ['/categorias/index']],
 
                     ['label' => 'Sobre Nós', 'header' => true],
                     ['label' => 'Contactos', 'icon' => 'address-book', 'url' => ['/site/contactos']],

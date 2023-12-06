@@ -70,8 +70,8 @@ AppAsset::register($this);
         <i class="fas fa-user" style="color: black; font-size: 1.5rem;"></i>
         </a>';
 
-        // Adiciona o botão do carrinho de compras
-        $menuItems[] = '<a id="carrinho-compras" style="margin-right: 1px; text-decoration: none; padding: 5px;" href="url_para_carrinho">
+
+        $menuItems[] = '<a id="carrinho-compras" style="border: 2px solid black; margin-right: 10px; text-decoration: none; padding: 5px;" class="btn btn-outline-dark"  href="' . Url::toRoute("carrinho/view") . '">
             <i class="fas fa-shopping-cart" style="color: black; font-size: 1.5rem;"></i>
             </a>';
 

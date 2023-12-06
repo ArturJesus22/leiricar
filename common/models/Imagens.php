@@ -32,6 +32,7 @@ class Imagens extends \yii\db\ActiveRecord
             [['fileName', 'ID_produto'], 'required'],
             [['ID_produto'], 'integer'],
             [['fileName'], 'string', 'max' => 255],
+//            [['fileName'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
             [['ID_produto'], 'exist', 'skipOnError' => true, 'targetClass' => Produtos::class, 'targetAttribute' => ['ID_produto' => 'ID']],
         ];
     }
@@ -57,4 +58,6 @@ class Imagens extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Produtos::class, ['ID' => 'ID_produto']);
     }
+
+
 }

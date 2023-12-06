@@ -16,6 +16,7 @@ use Yii;
  * @property string $telefone
  * @property int $user_id
  *
+ * @property Carrinho[] $carrinhos
  * @property User $user
  */
 class Dados_Clientes extends \yii\db\ActiveRecord
@@ -23,8 +24,6 @@ class Dados_Clientes extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-
-
     public static function tableName()
     {
         return 'clientes';
@@ -71,18 +70,27 @@ class Dados_Clientes extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Carrinhos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCarrinhos()
+    {
+        return $this->hasMany(Carrinho::class, ['ID_cliente' => 'id']);
+    }
+
+    /**
      * Gets query for [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
-
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
     public static function findIdentity()
     {
         return Yii::$app->user->id;
     }
-
 }
