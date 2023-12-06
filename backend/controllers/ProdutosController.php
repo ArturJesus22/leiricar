@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use common\models\Categorias;
+use common\models\Ivas;
 use common\models\Produtos;
+use common\models\Imagens;
 use backend\models\ProdutosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -73,6 +75,7 @@ class ProdutosController extends Controller
     public function actionCreate()
     {
         $model = new Produtos();
+//        $modelImagem = new Imagens();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -145,5 +148,10 @@ class ProdutosController extends Controller
     public function getCategoria()
     {
         return $this->hasOne(Categorias::class, ['ID_categoria' => 'ID_categoria']);
+    }
+
+    public function getIva()
+    {
+        return $this->hasOne(Ivas::class, ['id' => 'id_iva']);
     }
 }

@@ -4,19 +4,16 @@ namespace backend\controllers;
 
 use backend\models\User;
 use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use backend\models\AuthAssignment;
-use Yii;
+use yii;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * PerfilController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class PerfilController extends Controller
 {
-
     /**
      * @inheritDoc
      */
@@ -31,17 +28,6 @@ class UserController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
-                'access' => [
-                    'class' => AccessControl::class,
-                    'only' => ['index', 'view', 'create', 'update', 'delete'], // ações para restringir, Adicinei logout para caso ele por algum motiva consiga entrar, não ficar bloqueado dentro do site logado.
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // Restrinjir o acesso apenas a ação
-                            'roles' => ['gerirColaboradores'],
-                        ],
-                    ],
-                ],
             ]
         );
     }
@@ -53,15 +39,8 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        $authAssignments = AuthAssignment::find()->all();
-
-        $userIdsWithRoles = AuthAssignment::find()
-            ->select('user_id')
-            ->where(['in', 'item_name', ['admin', 'funcionario']])
-            ->column();
-
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find()->where(['id' => $userIdsWithRoles])
+            'query' => User::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -74,9 +53,8 @@ class UserController extends Controller
             */
         ]);
 
-        return $this->render('index', [
+        return $this->render('view', [
             'dataProvider' => $dataProvider,
-            'authAssignments' => $authAssignments,
         ]);
     }
 
@@ -86,10 +64,13 @@ class UserController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView()
     {
+        $user_id = Yii::$app->user->id;
+        $model = $this->findModel($user_id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -102,14 +83,12 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            // Atribui a função ao utilizador baseado no valor do campo 'role'
-            $auth = \Yii::$app->authManager;
-            $role = $auth->getRole($model->role);
-            $auth->assign($role, $model->id);
-
-
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -136,11 +115,6 @@ class UserController extends Controller
         }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-                    $auth = Yii::$app->authManager;
-                    $role = $auth->getRole($model->role);
-                    $auth -> revokeAll($model->id);
-                    $auth->assign($role, $model->id);
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -177,10 +151,5 @@ class UserController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function getAssignments()
-    {
-        return $this->hasMany(AuthAssignment::class, ['user_id' => 'id']);
     }
 }

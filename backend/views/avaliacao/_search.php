@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var backend\models\IvasSearch $model */
+/** @var backend\models\AvaliacoesSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="ivas-search">
+<div class="avaliacoes-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,15 +17,15 @@ use yii\widgets\ActiveForm;
 
 <!--    --><?php //= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'percentagem') ?>
+<!--    --><?php //= $form->field($model, 'comentario') ?>
 
-<!--    --><?php //= $form->field($model, 'descricao') ?>
+    <?= $form->field($model, 'data_avaliacao') ?>
 
-    <?= $form->field($model, 'estado')->dropDownList([
-        '' => 'Todos', // Mostra todos os registos
-        '1' => 'Ativo',
-        '0' => 'Desativo',
-    ]) ?>
+    <?= $form->field($model, 'avaliacao') ?>
+
+    <?= $form->field($model, 'ID_cliente') ?>
+
+    <?php  $form->field($model, 'ID_produto') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

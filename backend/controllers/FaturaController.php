@@ -2,17 +2,17 @@
 
 namespace backend\controllers;
 
-use common\models\Ivas;
-use backend\models\IvasSearch;
-use yii\filters\AccessControl;
+use common\models\Faturas;
+use common\models\Dados_Clientes;
+use backend\models\FaturasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * IvasController implements the CRUD actions for Ivas model.
+ * FaturaController implements the CRUD actions for Faturas model.
  */
-class IvasController extends Controller
+class FaturaController extends Controller
 {
     /**
      * @inheritDoc
@@ -28,29 +28,18 @@ class IvasController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
-                'access' => [
-                    'class' => AccessControl::class,
-                    'only' => ['index', 'view', 'create', 'update', 'delete'],
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // Restrinjir o acesso apenas a ação
-                            'roles' => ['gerirProdutos'],
-                        ],
-                    ],
-                ],
             ]
         );
     }
 
     /**
-     * Lists all Ivas models.
+     * Lists all Faturas models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new IvasSearch();
+        $searchModel = new FaturasSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -60,30 +49,30 @@ class IvasController extends Controller
     }
 
     /**
-     * Displays a single Ivas model.
-     * @param int $id ID
+     * Displays a single Faturas model.
+     * @param int $ID ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($ID)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($ID),
         ]);
     }
 
     /**
-     * Creates a new Ivas model.
+     * Creates a new Faturas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Ivas();
+        $model = new Faturas();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'ID' => $model->ID]);
             }
         } else {
             $model->loadDefaultValues();
@@ -95,18 +84,18 @@ class IvasController extends Controller
     }
 
     /**
-     * Updates an existing Ivas model.
+     * Updates an existing Faturas model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
+     * @param int $ID ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($ID)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($ID);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'ID' => $model->ID]);
         }
 
         return $this->render('update', [
@@ -115,32 +104,37 @@ class IvasController extends Controller
     }
 
     /**
-     * Deletes an existing Ivas model.
+     * Deletes an existing Faturas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
+     * @param int $ID ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($ID)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($ID)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Ivas model based on its primary key value.
+     * Finds the Faturas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Ivas the loaded model
+     * @param int $ID ID
+     * @return Faturas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($ID)
     {
-        if (($model = Ivas::findOne(['id' => $id])) !== null) {
+        if (($model = Faturas::findOne(['ID' => $ID])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function getCliente()
+    {
+        return $this->hasOne(Dados_Clientes::className(), ['id' => 'user_id']);
     }
 }

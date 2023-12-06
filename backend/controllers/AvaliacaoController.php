@@ -2,17 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Produto;
-use common\models\Categorias;
-use yii\data\ActiveDataProvider;
+use common\models\Avaliacoes;
+use backend\models\AvaliacoesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProdutoController implements the CRUD actions for Produto model.
+ * AvaliacaoController implements the CRUD actions for Avaliacoes model.
  */
-class ProdutoController extends Controller
+class AvaliacaoController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,51 +32,46 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Lists all Produto models.
+     * Lists all Avaliacoes models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Produto::find(),
-        ]);
-
-        $dataProviderCat = new ActiveDataProvider([
-            'query' => Categorias::find(),
-        ]);
+        $searchModel = new AvaliacoesSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'dataProviderCat' => $dataProviderCat,
         ]);
     }
 
     /**
-     * Displays a single Produto model.
-     * @param int $ID ID
+     * Displays a single Avaliacoes model.
+     * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($ID)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($ID),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Produto model.
+     * Creates a new Avaliacoes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Produto();
+        $model = new Avaliacoes();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'ID' => $model->ID]);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -89,18 +83,18 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Updates an existing Produto model.
+     * Updates an existing Avaliacoes model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $ID ID
+     * @param int $id ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($ID)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($ID);
+        $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'ID' => $model->ID]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -109,29 +103,29 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Deletes an existing Produto model.
+     * Deletes an existing Avaliacoes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $ID ID
+     * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($ID)
+    public function actionDelete($id)
     {
-        $this->findModel($ID)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Produto model based on its primary key value.
+     * Finds the Avaliacoes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $ID ID
-     * @return Produto the loaded model
+     * @param int $id ID
+     * @return Avaliacoes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($ID)
+    protected function findModel($id)
     {
-        if (($model = Produto::findOne(['ID' => $ID])) !== null) {
+        if (($model = Avaliacoes::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

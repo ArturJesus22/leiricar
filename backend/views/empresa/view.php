@@ -4,24 +4,30 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Ivas $model */
+/** @var common\models\Empresa $model */
 
-$this->title = $model->percentagem;
-$this->params['breadcrumbs'][] = ['label' => 'Ivas', 'url' => ['index']];
+$this->title = $model->designacaoSocial;
+$this->params['breadcrumbs'][] = ['label' => 'Empresas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="ivas-view">
+<div class="empresa-view">
 
-    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/ivas'], ['class' => 'btn btn-dark']); ?>
+    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/empresa'], ['class' => 'btn btn-dark']); ?>
     <br></br>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'percentagem',
-            'descricao',
+            //'id',
+            'designacaoSocial',
+            'email:email',
+            'telefone',
+            'nif',
+            'morada',
+            'codigoPostal',
+            'localidade',
+            'capitalSocial',
         ],
     ]) ?>
 

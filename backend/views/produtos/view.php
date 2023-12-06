@@ -32,9 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'Nome',
             'Descricao:ntext',
             'Preco',
-            'ID_categoria',
+            [
+                'attribute' => 'categoria.nome_categoria',
+                'label' => 'Categoria',
+            ],
             'Quantidade',
-            'id_iva',
+            [
+                'attribute' => 'iva.percentagem',
+                'label' => 'IVA(%)',
+            ],
         ],
     ]) ?>
 

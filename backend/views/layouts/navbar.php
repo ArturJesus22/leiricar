@@ -12,7 +12,7 @@ use yii\helpers\Html;
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?= Yii::$app->user->identity->username ?></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                <li><a href="#" class="dropdown-item">Perfil </a></li>
+                <li><?= Html::a('Perfil', ['perfil/view'], ['data-method' => 'post', 'class' => 'dropdown-item']) ?></li>
                 <li><?= Html::a('Logout', ['site/logout'], ['data-method' => 'post', 'class' => 'dropdown-item']) ?></li>
             </ul>
         </li>

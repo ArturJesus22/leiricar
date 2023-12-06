@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $percentagem
  * @property string $descricao
- * @property int $vigor
+ * @property int $estado
  *
  * @property Produtos[] $produtos
  */
@@ -30,8 +30,8 @@ class Ivas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['percentagem', 'descricao', 'vigor'], 'required'],
-            [['percentagem', 'vigor'], 'integer'],
+            [['percentagem', 'descricao', 'estado'], 'required'],
+            [['percentagem', 'estado'], 'integer'],
             [['descricao'], 'string', 'max' => 80],
         ];
     }
@@ -45,7 +45,7 @@ class Ivas extends \yii\db\ActiveRecord
             'id' => 'ID',
             'percentagem' => 'Percentagem',
             'descricao' => 'Descricao',
-            'vigor' => 'Vigor',
+            'estado' => 'Estado',
         ];
     }
 

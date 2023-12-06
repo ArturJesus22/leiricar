@@ -19,18 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Criar Iva', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
            // ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
             'percentagem',
             'descricao',
-            'vigor',
+            [
+                'attribute' => 'estado',
+                'value' => function ($model) {
+                    return $model->estado == 1 ? 'Ativo' : 'Desativo';
+                },
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Ivas $model, $key, $index, $column) {

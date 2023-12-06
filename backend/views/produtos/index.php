@@ -37,6 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Categoria', 
             ],
             [
+                'attribute' => 'iva.percentagem',
+                'label' => 'IVA(%)',
+            ],
+            [
                 'attribute' => 'Quantidade',
                 'label' => 'Stock',
             ],

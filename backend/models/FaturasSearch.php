@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Ivas;
+use common\models\Faturas;
 
 /**
- * IvasSearch represents the model behind the search form of `common\models\Ivas`.
+ * FaturasSearch represents the model behind the search form of `common\models\Faturas`.
  */
-class IvasSearch extends Ivas
+class FaturasSearch extends Faturas
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,9 @@ class IvasSearch extends Ivas
     public function rules()
     {
         return [
-            [['id', 'percentagem'], 'integer'],
-            [['descricao', 'estado'], 'safe'],
+            [['ID', 'user_id'], 'integer'],
+            [['dataFatura'], 'safe'],
+            [['valorTotal'], 'number'],
         ];
     }
 
@@ -40,7 +41,7 @@ class IvasSearch extends Ivas
      */
     public function search($params)
     {
-        $query = Ivas::find();
+        $query = Faturas::find();
 
         // add conditions that should always apply here
 
@@ -58,12 +59,11 @@ class IvasSearch extends Ivas
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'percentagem' => $this->percentagem,
-            'estado' => $this->estado,
+            'ID' => $this->ID,
+            'dataFatura' => $this->dataFatura,
+            'valorTotal' => $this->valorTotal,
+            'user_id' => $this->user_id,
         ]);
-
-        $query->andFilterWhere(['like', 'descricao', $this->descricao]);
 
         return $dataProvider;
     }

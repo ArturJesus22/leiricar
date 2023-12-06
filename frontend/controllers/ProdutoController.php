@@ -66,12 +66,12 @@ class ProdutoController extends Controller
      * Finds the Produto model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $ID ID
-     * @return Produto the loaded model
+     * @return Produtos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($ID)
     {
-        if (($model = Produto::findOne(['ID' => $ID])) !== null) {
+        if (($model = Produtos::findOne(['ID' => $ID])) !== null) {
             return $model;
         }
 

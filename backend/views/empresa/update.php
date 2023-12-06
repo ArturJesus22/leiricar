@@ -3,15 +3,14 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\Ivas $model */
+/** @var common\models\Empresa $model */
 
-$this->title = 'Atualizar Iva: ' . $model->percentagem;
-$this->params['breadcrumbs'][] = ['label' => 'Ivas', 'url' => ['index']];
+$this->title = 'Dados da Empresa: ' . $model->designacaoSocial;
+$this->params['breadcrumbs'][] = ['label' => 'Empresas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="ivas-update">
-
+<div class="empresa-update">
 
     <?= $this->render('_form', [
         'model' => $model,

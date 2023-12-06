@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Ivas;
+use common\models\Avaliacoes;
 
 /**
- * IvasSearch represents the model behind the search form of `common\models\Ivas`.
+ * AvaliacoesSearch represents the model behind the search form of `common\models\Avaliacoes`.
  */
-class IvasSearch extends Ivas
+class AvaliacoesSearch extends Avaliacoes
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class IvasSearch extends Ivas
     public function rules()
     {
         return [
-            [['id', 'percentagem'], 'integer'],
-            [['descricao', 'estado'], 'safe'],
+            [['id', 'avaliacao', 'ID_cliente', 'ID_produto'], 'integer'],
+            [['comentario', 'data_avaliacao'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class IvasSearch extends Ivas
      */
     public function search($params)
     {
-        $query = Ivas::find();
+        $query = Avaliacoes::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,13 @@ class IvasSearch extends Ivas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'percentagem' => $this->percentagem,
-            'estado' => $this->estado,
+            'data_avaliacao' => $this->data_avaliacao,
+            'avaliacao' => $this->avaliacao,
+            'ID_cliente' => $this->ID_cliente,
+            'ID_produto' => $this->ID_produto,
         ]);
 
-        $query->andFilterWhere(['like', 'descricao', $this->descricao]);
+        $query->andFilterWhere(['like', 'comentario', $this->comentario]);
 
         return $dataProvider;
     }

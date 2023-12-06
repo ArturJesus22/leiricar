@@ -4,26 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\Ivas $model */
+/** @var common\models\Avaliacoes $model */
 
-$this->title = $model->percentagem;
-$this->params['breadcrumbs'][] = ['label' => 'Ivas', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Avaliacoes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="ivas-view">
+<div class="avaliacoes-view">
 
-    <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['/ivas'], ['class' => 'btn btn-dark']); ?>
-    <br></br>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'percentagem',
-            'descricao',
-        ],
-    ]) ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -35,5 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'comentario',
+            'data_avaliacao',
+            'avaliacao',
+            'ID_cliente',
+            'ID_produto',
+        ],
+    ]) ?>
 
 </div>

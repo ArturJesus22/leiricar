@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 <!--    --><?php //= $form->field($model, 'ID_categoria') ?>
 <!--    --><?php //= $form->field($model, 'nomeCategoria') ?>
 
-    <?php echo $form->field($model, 'Quantidade') ?>
+    <?= $form->field($model, 'Quantidade')->label('Stock') ?>
 
     <?php // echo $form->field($model, 'id_iva') ?>
 

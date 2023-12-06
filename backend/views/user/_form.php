@@ -31,29 +31,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-
-    <?php
-    // Caso a conta já esteja com role atribuida irá carregar a role:
-    if (isset($userRoles) && is_array($userRoles) && !empty($userRoles)) {
-        echo $form->field($model, 'role')->dropDownList(
-            [
-                '' => 'Selecione um cargo', // Opção padrão
-                'admin' => 'Admin',
-                'funcionario' => 'Funcionário',
-            ],
-            ['options' => array_fill_keys($userRoles, ['selected' => true])]
-        )->label('Cargo');
-    } else {
-        // Caso a conta esteja a ser criada , não irá carregar nenhuma role:
-        echo $form->field($model, 'role')->dropDownList(
-            [
-                '' => 'Selecione um cargo', // Opção padrão
-                'admin' => 'Admin',
-                'funcionario' => 'Funcionário',
-            ],
-        )->label('Cargo');
-    }
-    ?>
+    <?= $form->field($model, 'role')->dropDownList(
+        [
+            '' => 'Selecione um cargo', // Opção padrão
+            'admin' => 'Admin',
+            'funcionario' => 'Funcionário',
+        ],
+    ) ?>
             </div>
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

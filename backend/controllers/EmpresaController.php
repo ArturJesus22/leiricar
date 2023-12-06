@@ -2,21 +2,18 @@
 
 namespace backend\controllers;
 
-use backend\models\User;
+use common\models\Empresa;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use backend\models\AuthAssignment;
-use Yii;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * EmpresaController implements the CRUD actions for Empresa model.
  */
-class UserController extends Controller
+class EmpresaController extends Controller
 {
-
     /**
      * @inheritDoc
      */
@@ -47,41 +44,23 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all Empresa models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $authAssignments = AuthAssignment::find()->all();
-
-        $userIdsWithRoles = AuthAssignment::find()
-            ->select('user_id')
-            ->where(['in', 'item_name', ['admin', 'funcionario']])
-            ->column();
-
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find()->where(['id' => $userIdsWithRoles])
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
+            'query' => Empresa::find(),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'authAssignments' => $authAssignments,
         ]);
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Empresa model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -94,31 +73,37 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Empresa model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new User();
+        $exestirEmpresa = Empresa::find()->one();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            // Atribui a função ao utilizador baseado no valor do campo 'role'
-            $auth = \Yii::$app->authManager;
-            $role = $auth->getRole($model->role);
-            $auth->assign($role, $model->id);
+        // Se já existe uma empresa, redireciona para a visualização da empresa existente
+        if ($exestirEmpresa !== null) {
+            echo "Já existe uma empresa criada!";
+        }else {
 
+            $model = new Empresa();
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($this->request->isPost) {
+                if ($model->load($this->request->post()) && $model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            } else {
+                $model->loadDefaultValues();
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Empresa model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -128,19 +113,7 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        $rolename = Yii::$app->authManager->getRolesByUser($id);
-
-        foreach ($rolename as $role) {
-            $roleName = $role->name;
-            $model->role = $roleName;
-        }
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-                    $auth = Yii::$app->authManager;
-                    $role = $auth->getRole($model->role);
-                    $auth -> revokeAll($model->id);
-                    $auth->assign($role, $model->id);
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -150,7 +123,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Empresa model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -164,23 +137,18 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Empresa model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return User the loaded model
+     * @return Empresa the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = Empresa::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function getAssignments()
-    {
-        return $this->hasMany(AuthAssignment::class, ['user_id' => 'id']);
     }
 }

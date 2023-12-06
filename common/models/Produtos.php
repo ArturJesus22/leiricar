@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use common\models\Imagens;
+use common\models\Favoritos;
+
 
 /**
  * This is the model class for table "produtos".

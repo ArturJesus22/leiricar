@@ -35,8 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->Preco . ' €';
                         }
                     ],
-                    'Quantidade',
-                    // Add more attributes as needed
+                    [
+                        'attribute' => 'Quantidade',
+                        'label' => 'Stock',
+                    ],
                 ],
             ]) ?>
 
