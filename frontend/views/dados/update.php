@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var common\models\Dados_Clientes $model */
+/** @var common\models\User $modelUser */
 
 $this->title = 'Atualizar Dados: ' . $model->nome;
 
@@ -14,6 +15,7 @@ $this->title = 'Atualizar Dados: ' . $model->nome;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelUser' => $modelUser,
     ]) ?>
 
 </div>

@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Dados_Clientes;
-use common\models\User;
+use backend\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,8 +65,11 @@ class DadosController extends Controller
         $user_id = Yii::$app->user->id;
         $model = $this->findModel($user_id);
 
+        $modelUser = User::findOne(['id' => $user_id]);
+
         return $this->render('view', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
 
@@ -102,17 +105,23 @@ class DadosController extends Controller
      */
     public function actionUpdate()
     {
-
         $model = Dados_Clientes::find()->where(['user_id' => Yii::$app->user->id])->one();
+        $modelUser = User::findOne(['id' => $model->user_id]);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view']);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                if ($modelUser->load($this->request->post()) && $modelUser->save()) {
+                    return $this->redirect(['view']);
+                }
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
+
 
     /**
      * Deletes an existing Dados_Clientes model.

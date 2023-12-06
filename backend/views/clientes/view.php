@@ -27,26 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
             //],
             [
                 'attribute' => 'user.email',
-                'label' => 'Email', // Defina o rótulo personalizado aqui
+                'label' => 'Email',
             ],
             //'id',
             'nome',
             [
                 'attribute' => 'rua',
-                'label' => 'Morada', // Defina o rótulo personalizado aqui
+                'label' => 'Morada',
             ],
             [
                 'attribute' => 'codigopostal',
-                'label' => 'Código Postal', // Defina o rótulo personalizado aqui
+                'label' => 'Código Postal',
             ],
             'localidade',
             [
                 'attribute' => 'nif',
-                'label' => 'NIF(Número Identificação Fiscal)', // Defina o rótulo personalizado aqui
+                'label' => 'NIF(Número Identificação Fiscal)',
             ],
             [
                 'attribute' => 'telefone',
-                'label' => 'Nº Telemóvel', // Defina o rótulo personalizado aqui
+                'label' => 'Nº Telemóvel',
             ],
             //'user_id',
         ],

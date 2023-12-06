@@ -19,23 +19,31 @@ $this->title = $model->nome;
         'model' => $model,
         'attributes' => [
             //'id',
+            [
+                'attribute' => 'user.username',
+                'label' => 'Username',
+            ],
+            [
+                'attribute' => 'user.email',
+                'label' => 'Email',
+            ],
             'nome',
             [
                 'attribute' => 'rua',
-                'label' => 'Morada', // Defina o rótulo personalizado aqui
+                'label' => 'Morada',
             ],
             [
                 'attribute' => 'codigopostal',
-                'label' => 'Código Postal', // Defina o rótulo personalizado aqui
+                'label' => 'Código Postal',
             ],
             'localidade',
             [
                 'attribute' => 'nif',
-                'label' => 'NIF(Número Identificação Fiscal)', // Defina o rótulo personalizado aqui
+                'label' => 'NIF(Número Identificação Fiscal)',
             ],
             [
                 'attribute' => 'telefone',
-                'label' => 'Nº Telemóvel', // Defina o rótulo personalizado aqui
+                'label' => 'Nº Telemóvel',
             ],
             //'user_id',
         ],
