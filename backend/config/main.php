@@ -11,7 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+            'api' => [
+                'class' => 'backend\modules\api\ModuleAPI',
+            ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -37,15 +41,51 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                'admin' => 'admin/index', // Rota para a página de administração
-                // Outras regras de URL aqui
-            ],
-        ],
-        */
-    ],
-    'params' => $params,
+       /* 'urlManager' => [
+                'enablePrettyUrl' => true,
+                'showScriptName' => false,
+                'rules' => [
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => 'api/user',
+                        'pluralize' => false,
+                        'extraPatterns' => [
+                            'GET login' => 'login',
+                            'POST register' => 'register',
+                            'GET profile' => 'profile',
+                            'POST update' => 'update',
+                            'POST delete' => 'delete',
+                            'GET view' => 'view',
+                            'POST create' => 'create',
+                            'GET index' => 'index',
+                        ],
+                    ],
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => 'api/empresa',
+                        'pluralize' => false,
+                        'extraPatterns' => [
+                            'GET index' => 'index',
+                            'GET view' => 'view',
+                            'POST create' => 'create',
+                            'POST update' => 'update',
+                            'POST delete' => 'delete',
+                        ],
+                    ],
+                    [
+                        'class' => 'yii\rest\UrlRule',
+                        'controller' => 'api/funcionario',
+                        'pluralize' => false,
+                        'extraPatterns' => [
+                            'GET index' => 'index',
+                            'GET view' => 'view',
+                            'POST create' => 'create',
+                            'POST update' => 'update',
+                            'POST delete' => 'delete',
+                                          ],
+                    ],
+              ],
+             'params' => $params,
+        ]*/
+    ]
 ];

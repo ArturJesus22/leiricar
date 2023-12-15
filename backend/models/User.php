@@ -24,6 +24,8 @@ class User extends \yii\db\ActiveRecord
 
     public $role;
 
+    const STATUS_ACTIVE = 10;
+
     /**
      * {@inheritdoc}
      */
@@ -95,5 +97,9 @@ class User extends \yii\db\ActiveRecord
     public function generateEmailVerificationToken()
     {
         $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 }

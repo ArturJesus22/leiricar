@@ -2,9 +2,10 @@
 
 namespace backend\controllers;
 
-use backend\models\User;
+use common\models\User;
 use common\models\Dados_Clientes;
 use backend\models\ClientesSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +28,17 @@ class ClientesController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                    ],
+                ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // Restrinjir o acesso apenas a ação
+                            'roles' => ['gerirClientes'],
+                        ],
                     ],
                 ],
             ]

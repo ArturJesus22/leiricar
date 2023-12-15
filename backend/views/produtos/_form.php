@@ -5,9 +5,9 @@ use yii\widgets\ActiveForm;
 use \yii\helpers\ArrayHelper;
 use common\models\Ivas;
 
+
 /** @var yii\web\View $this */
 /** @var common\models\Produtos $model */
-/** @var common\models\Imagens $modelImagem */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -22,20 +22,18 @@ use common\models\Ivas;
 
     <?= $form->field($model, 'Preco')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ID_categoria')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Categorias::find()->all(),
+    <?= $form->field($model, 'ID_categoria')->dropDownList(ArrayHelper::map(\common\models\Categorias::find()->all(),
         'ID_categoria', 'nome_categoria'),
         ['prompt'=>'Selecione a Categoria']) ?>
 
     <?= $form->field($model, 'Quantidade')->textInput() ?>
 
 
-    <?= $form->field($model, 'id_iva')->dropDownList(\yii\helpers\ArrayHelper::map(
-        \common\models\Ivas::find()->where(['estado' => 1])->all(),
+    <?= $form->field($model, 'id_iva')->dropDownList(ArrayHelper::map(Ivas::find()->where(['estado' => 1])->all(),
         'id', 'percentagem'),
         ['prompt' => 'Selecione o IVA']
     )?>
 
-<!--    --><?php /*= $form->field($modelImagem, 'fileName[]')->fileInput(['multiple' => true]) */?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

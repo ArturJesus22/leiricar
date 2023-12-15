@@ -7,10 +7,13 @@ use common\models\Ivas;
 use common\models\Produtos;
 use common\models\Imagens;
 use backend\models\ProdutosSearch;
+use common\models\UploadForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii;
 
 /**
  * ProdutosController implements the CRUD actions for Produtos model.
@@ -29,6 +32,17 @@ class ProdutosController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                    ],
+                ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // Restrinjir o acesso apenas a ação
+                            'roles' => ['gerirProdutos'],
+                        ],
                     ],
                 ],
             ]
@@ -76,7 +90,6 @@ class ProdutosController extends Controller
     public function actionCreate()
     {
         $model = new Produtos();
-        $modelImagem = new Imagens();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -89,6 +102,20 @@ class ProdutosController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imagem');
+            if ($model->upload()) {
+                return;
+            }
+        }
+        return $this->goHome();
     }
 
     /**

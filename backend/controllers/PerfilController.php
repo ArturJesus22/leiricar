@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\User;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,17 @@ class PerfilController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                    ],
+                ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // Restrinjir o acesso apenas a ação
+                            'roles' => ['gerirClientes'],
+                        ],
                     ],
                 ],
             ]
@@ -106,7 +118,7 @@ class PerfilController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $user_id = Yii::$app->user->id;
         $rolename = Yii::$app->authManager->getRolesByUser($id);
 
         foreach ($rolename as $role) {
@@ -117,10 +129,13 @@ class PerfilController extends Controller
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($model ->id == $user_id) {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }else{
+            throw new NotFoundHttpException("Acede a esta area pela Gestão dos Colaboradores/Clientes");
+        }
     }
 
     /**
